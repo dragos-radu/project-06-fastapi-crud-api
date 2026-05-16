@@ -94,3 +94,24 @@ This was added for:
 - retrieving a project by ID
 - updating a project by ID
 - deleting a project by ID
+
+
+## Automated Testing
+
+Automated tests were added using pytest and FastAPI TestClient.
+
+The test suite validates the main API behavior without requiring the server to be started manually.
+
+The tests cover:
+
+- health check endpoint
+- listing projects
+- creating a project
+- retrieving a project by ID
+- updating a project
+- deleting a project
+- handling missing projects with `404 Not Found` responses
+
+Because the API currently uses an in-memory dictionary, the test state is reset before each test. This keeps the tests isolated and prevents one test from affecting another.
+
+At this stage, the test suite confirms that the CRUD flow works correctly and that the API returns the expected response codes for both successful and failed requests.
