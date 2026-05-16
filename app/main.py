@@ -11,8 +11,19 @@ from app.store import (
 
 app = FastAPI(
     title="DevOps Projects API",
-    description="A simple FastAPI CRUD API for managing DevOps portfolio projects.",
+    description=(
+        "A local-first FastAPI CRUD API for managing DevOps portfolio projects. "
+        "The API uses in-memory storage, includes automated tests and is prepared "
+        "for future Docker and cloud deployment scenarios."
+    ),
     version="1.0.0",
+    contact={
+        "name": "Dragos Radu",
+        "url": "https://github.com/dragos-radu",
+    },
+    license_info={
+        "name": "MIT",
+    },
 )
 
 
