@@ -60,3 +60,37 @@ Epic: **DEVOPS-26** – Build FastAPI CRUD API for DevOps portfolio management
 - **DEVOPS-30** – Add OpenAPI documentation
 - **DEVOPS-31** – Prepare Docker-ready structure
 - **DEVOPS-32** – Prepare optional AWS Lambda wrapper
+
+## API Endpoints
+
+The API includes the main CRUD operations for managing DevOps portfolio projects.
+
+| Method | Endpoint | Description |
+|---|---|---|
+| GET | `/projects` | Returns all projects from the in-memory store |
+| GET | `/projects/{project_id}` | Returns a single project by ID |
+| POST | `/projects` | Creates a new project |
+| PUT | `/projects/{project_id}` | Updates an existing project |
+| DELETE | `/projects/{project_id}` | Deletes an existing project |
+
+## Implementation Notes
+
+The CRUD logic was split into separate application layers to keep the project clean and easy to extend.
+
+The `models.py` file defines the Pydantic models used for request validation and response formatting.
+
+The `store.py` file contains the in-memory dictionary used as temporary storage for the projects.
+
+The `main.py` file exposes the FastAPI routes and connects the API endpoints with the store logic.
+
+At this stage, the API uses local in-memory storage only. No external database is used yet, because the focus of this project is API structure, validation, testing and portability.
+
+## Error Handling
+
+The API returns a `404 Not Found` response when a requested project does not exist.
+
+This was added for:
+
+- retrieving a project by ID
+- updating a project by ID
+- deleting a project by ID
