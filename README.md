@@ -134,3 +134,25 @@ The documentation includes:
 - validation rules generated from Pydantic models
 
 This makes the API easier to understand, test and integrate with other tools. It also shows that the project follows a modern API-first approach, where documentation is generated directly from the application code.
+
+
+## Docker-ready Structure
+
+The project was prepared to run as a Docker container.
+
+A Dockerfile was added to define how the FastAPI application is packaged and started inside a container.
+
+The container image uses an official slim Python base image, installs only the runtime dependencies and starts the API with Uvicorn on port `8000`.
+
+A `.dockerignore` file was also added to keep unnecessary local files out of the Docker build context.
+
+This makes the application more portable and prepares it for future deployment scenarios such as:
+
+- local Docker execution
+- AWS EC2
+- AWS App Runner
+- AWS Lambda container images
+- Kubernetes
+- CI/CD pipelines
+
+At this stage, Docker is used only to prepare and validate the container-ready structure. More advanced container workflows will be handled in the next project.
