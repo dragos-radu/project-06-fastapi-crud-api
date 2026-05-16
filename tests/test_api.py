@@ -5,8 +5,10 @@ from app.main import app
 
 client = TestClient(app)
 
+
 def setup_function():
     projects_store.clear()
+
 
 def test_health_check():
     response = client.get("/health")
