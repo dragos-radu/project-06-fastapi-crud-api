@@ -46,7 +46,7 @@ This project demonstrates how to:
 
 ## Project Status
 
-In progress
+Completed
 
 ## Jira
 
