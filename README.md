@@ -43,6 +43,8 @@ This project demonstrates how to:
 - **OpenAPI / Swagger** – Automatic API documentation
 - **Docker-ready structure** – Containerization ready
 - **Optional AWS Lambda wrapper** – Serverless deployment option
+- **Mangum** – AWS Lambda handler for FastAPI applications
+- **AWS Lambda optional** – Serverless deployment option using Mangum
 
 ## Project Status
 
@@ -59,7 +61,8 @@ Epic: **DEVOPS-26** – Build FastAPI CRUD API for DevOps portfolio management
 - **DEVOPS-29** – Add pytest unit tests
 - **DEVOPS-30** – Add OpenAPI documentation
 - **DEVOPS-31** – Prepare Docker-ready structure
-- **DEVOPS-32** – Prepare optional AWS Lambda wrapper
+- **DEVOPS-32** – Add pre-commit quality checks
+- **DEVOPS-33** – Prepare optional AWS Lambda wrapper
 
 ## API Endpoints
 
@@ -156,3 +159,38 @@ This makes the application more portable and prepares it for future deployment s
 - CI/CD pipelines
 
 At this stage, Docker is used only to prepare and validate the container-ready structure. More advanced container workflows will be handled in the next project.
+
+## Optional AWS Lambda Wrapper
+
+An optional AWS Lambda wrapper was added without changing the main FastAPI application.
+
+The core application still runs normally with Uvicorn for local and Docker-based execution. The Lambda wrapper provides an alternative entry point that can be used later for serverless AWS deployment.
+
+The wrapper uses Mangum, an ASGI adapter that allows FastAPI applications to run inside AWS Lambda.
+
+The architecture is:
+
+```text
+Client
+  |
+AWS Lambda Function URL / API Gateway
+  |
+Lambda event
+  |
+Mangum adapter
+  |
+FastAPI application
+  |
+CRUD endpoints
+```
+
+This keeps the API portable and allows the same FastAPI application to be reused across multiple deployment targets:
+
+local development
+Docker containers
+AWS EC2
+AWS App Runner
+AWS Lambda
+Kubernetes
+
+At this stage, only the Lambda compatibility wrapper was prepared. No AWS deployment was performed.
